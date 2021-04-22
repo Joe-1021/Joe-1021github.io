@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #D9D7DD;
+            }
+        .clock{
+            width: 350px;
+            height:350px;
+            position:relative;
+            border-radius: 50%; 
+            background: #fcfcfc;
+            border: 15px solid white;
+            box-shadow: inset 2px 3px 8px 0 rgba(0, 0, 0, 0.1);
+            box-shadow: inset ;
+        }
+        .clock>* {
+            position: absolute;
+            margin: auto;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            transform-origin: bottom center;
+            transform: rotate(0deg);
+            z-index: 1;
+            transition-duration: 3s;
+            }
+        
+           
+        .dot{
+            width: 12px;
+            height: 12px;
+            border-radius: 100px;
+            background:white;
+            border: 2px solid #1b1b1b;
+
+        }
+        .hour {
+            height: 100px;
+            width: 6px;
+            top: -28%;
+            background: black;
+        }
+        .minute {
+            height: 120px;
+            width: 6px;
+            top: -34%;
+            background: black;
+            transform: rotate(90deg);
+        }
+        .second {
+
+            height: 90px;
+            width: 2px;
+            top: -26%;
+            border-radius: 4px;
+            background: #FF4B3E;
+            transform: rotate(180deg);
+
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="clock">
+        <div class="hour"></div>
+        <div class="minute"></div>
+        <div class="second"></div>
+        <div class="dot"></div>
+    </div>
+
+    <script>
+
+         clock();
+       setInterval(clock,1000);
+        function clock(){
+        var now = new Date();
+        seconds= now.getSeconds();
+        minutes= now.getMinutes()+seconds/60;
+        hours= (now.getHours()+minutes/60) %12;
+        document.querySelector('.hour').style.transform=`rotate(${hours*30}deg)`;
+        document.querySelector('.minute').style.transform=`rotate(${minutes*6}deg)`;
+        document.querySelector('.second').style.transform=`rotate(${seconds*6}deg)`;
+        }
+       
+        </script>
+</body>
+</html>
